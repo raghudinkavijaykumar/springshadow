@@ -13,6 +13,10 @@ targetCompatibility = '1.8'
 
 
 configurations {
+	all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+		exclude group: 'org.apache.hive', module: 'hive-exec'
+    }
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
@@ -23,13 +27,34 @@ repositories {
 }
 
 dependencies {
+/* Parallel data processing */
+	implementation 'org.apache.beam:beam-sdks-java-core:2.27.0'
+	implementation 'org.apache.beam:beam-runners-direct-java:2.27.0'
+	implementation 'org.apache.beam:beam-runners-google-cloud-dataflow-java:2.27.0'
+
+	implementation 'org.apache.beam:beam-vendor-guava-20_0:0.1'
+	implementation 'org.apache.beam:beam-vendor-grpc-1_13_1:0.2'
+	implementation 'org.apache.beam:beam-vendor-guava-26_0-jre:0.1'
+	
+	
+	implementation 'org.springframework.boot:spring-boot-starter'
+   implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	
+	implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.3'
+	implementation 'com.teradata.jdbc:terajdbc4:16.20.00.12'
+	implementation 'com.teradata.jdbc:tdgssconfig:16.20.01c.00'
+	
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.1'
+	implementation ('org.apache.hive:hive-exec:1.2.2') {
+		exclude group: 'com.google.guava' 
+	}
 }
 
 jar {
