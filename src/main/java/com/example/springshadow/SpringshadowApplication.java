@@ -1,4 +1,4 @@
-package com.example.springshadow.springshadow;
+package com.example.springshadow;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

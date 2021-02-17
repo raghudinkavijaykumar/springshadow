@@ -1,4 +1,4 @@
-package com.example.springshadow.springshadow;
+package com.example.springshadow;
 
 import java.util.HashMap;
 
@@ -18,18 +18,18 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 @EnableJpaRepositories(basePackages = {
         "com.example.springshadow.database.elabs.repository" }, entityManagerFactoryRef = "elabsEntityManager", transactionManagerRef = "elabsTransactionManager")
-@PropertySource("classpath:application-${spring.profiles.active}.yml")
+@PropertySource("classpath:application-${spring.profiles.active}.properties")
 public class ElabsDataSourceConfig {
-    @Value("${spring.datasource-elabs.driver-class-name}")
+    @Value("${spring.datasource.driverClassName}")
     private String driverClassName;
 
-    @Value("${spring.datasource-elabs.url}")
+    @Value("${spring.datasource.url}")
     private String url;
 
-    @Value("${spring.datasource-elabs.username}")
+    @Value("${spring.datasource.username}")
     private String username;
 
-    @Value("${spring.datasource-elabs.password}")
+    @Value("${spring.datasource.password}")
     private String password;
 
     @Value("${spring.jpa.database-platform}")
